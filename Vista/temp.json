@@ -1,0 +1,36 @@
+{ 
+"INDEX": 0,
+"TIMESTAMP": "2019-10-16 00:25:46.442610",
+"CLASS": "Estructuras de datos",
+"DATA": {
+    "value":"201403525-Nery",
+    "left":{
+        "value":"201005874-Andres",
+        "left":{
+            "value":"201005874-Estudiante1",
+            "left":null,
+            "right":null
+        },
+        "right":{
+            "value":"201313526-Alan",
+            "left":null,
+            "right":null
+        }
+    },
+    "rigth":{
+        "value":"201403819-Anne",
+        "left":{
+            "value":"201403624-Fernando",
+            "left":null,
+            "right":null
+        },
+        "right":{
+            "value":"201602255-Estudiante2",
+            "left":null,
+            "right":null
+        }
+    }
+},
+"PREVIUSHASH": "0000",
+"HASH": "e2b604a4e8bc5236276e0680f439cd38ec2cbc32b6164b5527bf337cd49fb362"
+}

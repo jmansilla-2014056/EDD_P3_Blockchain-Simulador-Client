@@ -1,0 +1,16 @@
+digraph structs {
+	node [shape=record]
+	rankdir=LR
+	<Modelos.LinkedList.node object at 0x03B4ADF0> [label="{201403624|}"]
+	<Modelos.LinkedList.node object at 0x03B540D0> [label="{201313526|}"]
+	<Modelos.LinkedList.node object at 0x03B5D350> [label="{201005874|}"]
+	<Modelos.LinkedList.node object at 0x03B5D370> [label="{201403525|}"]
+	<Modelos.LinkedList.node object at 0x03B5D3B0> [label="{201403819|}"]
+	<Modelos.LinkedList.node object at 0x03B5D410> [label="{201602255|}"]
+	<Modelos.LinkedList.node object at 0x03B4ADF0> -> <Modelos.LinkedList.node object at 0x03B540D0>
+	<Modelos.LinkedList.node object at 0x03B540D0> -> <Modelos.LinkedList.node object at 0x03B5D350>
+	<Modelos.LinkedList.node object at 0x03B5D350> -> <Modelos.LinkedList.node object at 0x03B5D370>
+	<Modelos.LinkedList.node object at 0x03B5D370> -> <Modelos.LinkedList.node object at 0x03B5D3B0>
+	<Modelos.LinkedList.node object at 0x03B5D3B0> -> <Modelos.LinkedList.node object at 0x03B5D410>
+	<Modelos.LinkedList.node object at 0x03B5D410> -> None
+}

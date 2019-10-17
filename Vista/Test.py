@@ -1,0 +1,20 @@
+from Controlador import Bulk
+from Modelos.TreeAvl import TreeAvl
+
+avl = TreeAvl()
+avl.insert(10, "Jesus")
+avl.insert(5, "Jesus")
+avl.insert(13, "Jesus")
+avl.insert(1, "Jesus")
+avl.insert(6, "Jesus")
+avl.insert(17, "Jesus")
+avl.insert(16, "Jeus")
+avl.Pre()
+avl.Inno()
+avl.Post()
+avl.graph()
+g = input()
+test = Bulk.readCSV(g)
+print(test)
+Bulk.ReadBlockJson(test)
+Bulk.Orders(test)
