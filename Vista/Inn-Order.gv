@@ -1,18 +1,18 @@
 digraph structs {
 	node [shape=record]
 	rankdir=LR
-	<Modelos.LinkedList.node object at 0x03DC43F0> [label="{201005874|}"]
-	<Modelos.LinkedList.node object at 0x03D4DCD0> [label="{201212963|}"]
-	<Modelos.LinkedList.node object at 0x03DCBC10> [label="{201313526|}"]
-	<Modelos.LinkedList.node object at 0x03DCBC30> [label="{201403525|}"]
-	<Modelos.LinkedList.node object at 0x03DCBC50> [label="{201403624|}"]
-	<Modelos.LinkedList.node object at 0x03DCB890> [label="{201403819|}"]
-	<Modelos.LinkedList.node object at 0x03DD0350> [label="{201602255|}"]
-	<Modelos.LinkedList.node object at 0x03DC43F0> -> <Modelos.LinkedList.node object at 0x03D4DCD0>
-	<Modelos.LinkedList.node object at 0x03D4DCD0> -> <Modelos.LinkedList.node object at 0x03DCBC10>
-	<Modelos.LinkedList.node object at 0x03DCBC10> -> <Modelos.LinkedList.node object at 0x03DCBC30>
-	<Modelos.LinkedList.node object at 0x03DCBC30> -> <Modelos.LinkedList.node object at 0x03DCBC50>
-	<Modelos.LinkedList.node object at 0x03DCBC50> -> <Modelos.LinkedList.node object at 0x03DCB890>
-	<Modelos.LinkedList.node object at 0x03DCB890> -> <Modelos.LinkedList.node object at 0x03DD0350>
-	<Modelos.LinkedList.node object at 0x03DD0350> -> None
+	<Modelos.LinkedList.node object at 0x038443D0> [label="{201005874|}"]
+	<Modelos.LinkedList.node object at 0x037CCC70> [label="{201212963|}"]
+	<Modelos.LinkedList.node object at 0x0384BBF0> [label="{201313526|}"]
+	<Modelos.LinkedList.node object at 0x0384BC10> [label="{201403525|}"]
+	<Modelos.LinkedList.node object at 0x0384BC30> [label="{201403624|}"]
+	<Modelos.LinkedList.node object at 0x03850370> [label="{201403819|}"]
+	<Modelos.LinkedList.node object at 0x038502B0> [label="{201602255|}"]
+	<Modelos.LinkedList.node object at 0x038443D0> -> <Modelos.LinkedList.node object at 0x037CCC70>
+	<Modelos.LinkedList.node object at 0x037CCC70> -> <Modelos.LinkedList.node object at 0x0384BBF0>
+	<Modelos.LinkedList.node object at 0x0384BBF0> -> <Modelos.LinkedList.node object at 0x0384BC10>
+	<Modelos.LinkedList.node object at 0x0384BC10> -> <Modelos.LinkedList.node object at 0x0384BC30>
+	<Modelos.LinkedList.node object at 0x0384BC30> -> <Modelos.LinkedList.node object at 0x03850370>
+	<Modelos.LinkedList.node object at 0x03850370> -> <Modelos.LinkedList.node object at 0x038502B0>
+	<Modelos.LinkedList.node object at 0x038502B0> -> None
 }

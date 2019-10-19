@@ -44,7 +44,7 @@ def generateString(listN: list):
     concat = "{ \n"
     previousHash = ""
     now = datetime.now()
-    timeStamp = datetime.now()
+    timeStamp = now.strftime('%m-%d-%y-::%H:%M:%S')
     node = dll.start_node
     index = dll.count()
     if node is None:
@@ -69,7 +69,8 @@ def generateString(listN: list):
 
 # if the user select a json in that list, generate three
 def ReadBlockJson(jsonTxt):
-    jsonTxt = str(jsonTxt).replace("\'", '"').replace("None", "null").replace(" ", "")
+    print(jsonTxt.replace("\'", '"').replace("None", "null"))
+    jsonTxt = str(jsonTxt).replace("\'", '"').replace("None", "null")
     newAVL = TreeAvl()
     obj = find_values('value', str(jsonTxt))
     for i in obj:
@@ -80,6 +81,7 @@ def ReadBlockJson(jsonTxt):
 
 # if the user select a POST,INN OR PRE and select a block
 def Orders(jsonTxt):
+    jsonTxt = str(jsonTxt).replace("\'", '"').replace("None", "null")
     newAVL = TreeAvl()
     obj = find_values('value', str(jsonTxt))
     for i in obj:
@@ -102,6 +104,7 @@ def saveJson(jsonTxt: str):
 
 # in the moment of received a jason return true if the hash is correct else send false
 def validateJson(jsonTxt: str):
+    jsonTxt = str(jsonTxt).replace("\'", '"').replace("None", "null")
     obj = json.loads(str(jsonTxt))
     index = obj["INDEX"]
     timeStamp = obj["TIMESTAMP"]
