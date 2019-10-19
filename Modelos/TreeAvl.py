@@ -76,7 +76,7 @@ class TreeAvl:
                     else:
                         nodeFather = self.rotationDoubleRight(nodeTree)
         else:
-            print("Node: duplicate")
+            print()
         if nodeTree.left is None and nodeTree.right is not None:
             nodeTree.factory = nodeTree.right.factory + 1
         elif nodeTree.right is None and nodeTree.left is not None:
@@ -156,7 +156,6 @@ class TreeAvl:
                 current = current.left
             elif stack:
                 current = stack.pop()
-                print(current.id, end=" ")  # Python 3 printing
                 s.node(str(current.id), '{' + str(current.name) + ':' + str(current.id) + '}')
                 if current.left is not None:
                     s.edge(str(current.id), str(current.left.id))

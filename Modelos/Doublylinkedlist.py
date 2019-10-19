@@ -17,13 +17,12 @@ class DoublyLinkedList:
             new_node = Node(data, hash)
             self.start_node = new_node
         else:
-            print("list is not empty")
+            print()
 
     def insert_at_start(self, data, hash):
         if self.start_node is None:
             new_node = Node(data, hash)
             self.start_node = new_node
-            print("node inserted")
             return
         new_node = Node(data, hash)
         new_node.prev = self.start_node
@@ -44,7 +43,6 @@ class DoublyLinkedList:
 
     def delete_at_start(self):
         if self.start_node is None:
-            print("The list has no element to delete")
             return
         if self.start_node.prev is None:
             self.start_node = None
@@ -53,7 +51,6 @@ class DoublyLinkedList:
 
     def delete_at_end(self):
         if self.start_node is None:
-            print("The list has no element to delete")
             return
         if self.start_node.prev is None:
             self.start_node = None
@@ -66,7 +63,7 @@ class DoublyLinkedList:
     def count(self):
         x = 0
         if self.start_node is None:
-            print("List has no element")
+            print()
         else:
             n = self.start_node
             while n is not None:

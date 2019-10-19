@@ -10,12 +10,13 @@ dll = DoublyLinkedList()
 
 
 def encrypt_string(hash_string):
+    print(hash_string)
     sha_signature = \
         hashlib.sha256(hash_string.encode()).hexdigest()
     return sha_signature
 
 
-# get studentes on json
+# get students on json
 def find_values(id, json_repr):
     results = []
 
@@ -35,8 +36,7 @@ def readCSV(direction):
     with open(direction, 'r') as f:
         reader = csv.reader(f)
         listN = list(reader)
-    concat = generateString(listN)
-    return concat
+    return generateString(listN)
 
 
 # this method return a block with all information (this block is sending after in all users)
@@ -55,19 +55,21 @@ def generateString(listN: list):
             node = node.prev
     clase = listN[0][1]
     data = listN[1][1]
+
+    obj = json.loads(str(data))
     concat = concat + '"INDEX": ' + str(index) + ',\n'
     concat = concat + '"TIMESTAMP": "' + str(timeStamp) + '",\n'
     concat = concat + '"CLASS": "' + str(clase) + '",\n'
     concat = concat + '"DATA": ' + str(data) + ',\n'
     concat = concat + '"PREVIUSHASH": "' + str(previousHash) + '",\n'
-
-    HASH = encrypt_string(str(index) + str(timeStamp) + str(clase) + str(data) + str(previousHash))
+    HASH = encrypt_string(str(index) + str(timeStamp) + str(clase) + str(obj).replace("\'", '"').replace("None", "null").replace(" ", "") + str(previousHash))
     concat = concat + '"HASH": "' + HASH + '"\n' + "}"
     return concat
 
 
 # if the user select a json in that list, generate three
 def ReadBlockJson(jsonTxt):
+    jsonTxt = str(jsonTxt).replace("\'", '"').replace("None", "null").replace(" ", "")
     newAVL = TreeAvl()
     obj = find_values('value', str(jsonTxt))
     for i in obj:
@@ -98,6 +100,19 @@ def saveJson(jsonTxt: str):
         dll.insert_at_end(jsonTxt, obj["HASH"])
 
 
-# send true if the hash is correct else send false
+# in the moment of received a jason return true if the hash is correct else send false
 def validateJson(jsonTxt: str):
-    return None
+    obj = json.loads(str(jsonTxt))
+    index = obj["INDEX"]
+    timeStamp = obj["TIMESTAMP"]
+    clase = obj["CLASS"]
+    data = obj["DATA"]
+    previousHash = obj["PREVIUSHASH"]
+    hash = obj["HASH"]
+    HASH = encrypt_string(str(index) + str(timeStamp) + str(clase) + str(data).replace("\'", '"').replace("None", "null").replace(" ", "") + str(previousHash))
+    if HASH == hash:
+        print("true")
+        return "true"
+    else:
+        print("false")
+        return "false"
