@@ -4,6 +4,8 @@ import sys
 
 from Controlador import Bulk
 
+Bulk.initial()
+
 menu = ['Send', 'Received', 'Reports', 'Exit']
 
 
@@ -63,7 +65,7 @@ def main(stdscr):
                     sys.stdout.flush()
                     g = input()
                     test = Bulk.readCSV(g)
-                    Bulk.generateReport(test)
+                    Bulk.ReadBlockJson(test)
                 # Players
                 if current_row == 1:
                     print('B')

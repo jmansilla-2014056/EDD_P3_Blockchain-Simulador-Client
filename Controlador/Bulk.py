@@ -1,12 +1,19 @@
 import csv
 from datetime import datetime
 import hashlib
+
+from Controlador.client import Client
 from Modelos.Doublylinkedlist import DoublyLinkedList
 import json
 
 from Modelos.TreeAvl import TreeAvl
 
 dll = DoublyLinkedList()
+
+c = Client()
+
+def initial():
+    c = Client()
 
 
 def encrypt_string(hash_string):
@@ -62,8 +69,13 @@ def generateString(listN: list):
     concat = concat + '"CLASS": "' + str(clase) + '",\n'
     concat = concat + '"DATA": ' + str(data) + ',\n'
     concat = concat + '"PREVIUSHASH": "' + str(previousHash) + '",\n'
-    HASH = encrypt_string(str(index) + str(timeStamp) + str(clase) + str(obj).replace("\'", '"').replace("None", "null").replace(" ", "") + str(previousHash))
+    HASH = encrypt_string(
+        str(index) + str(timeStamp) + str(clase) + str(obj).replace("\'", '"').replace("None", "null").replace(" ",
+                                                                                                               "") + str(
+            previousHash))
     concat = concat + '"HASH": "' + HASH + '"\n' + "}"
+    c.jsonTxt = concat
+    c.sock.sendall(concat.encode('utf-8'))
     return concat
 
 
@@ -112,7 +124,10 @@ def validateJson(jsonTxt: str):
     data = obj["DATA"]
     previousHash = obj["PREVIUSHASH"]
     hash = obj["HASH"]
-    HASH = encrypt_string(str(index) + str(timeStamp) + str(clase) + str(data).replace("\'", '"').replace("None", "null").replace(" ", "") + str(previousHash))
+    HASH = encrypt_string(
+        str(index) + str(timeStamp) + str(clase) + str(data).replace("\'", '"').replace("None", "null").replace(" ",
+                                                                                                                "") + str(
+            previousHash))
     if HASH == hash:
         print("true")
         return "true"
