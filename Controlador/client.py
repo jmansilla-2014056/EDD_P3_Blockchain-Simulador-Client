@@ -8,12 +8,14 @@ from Controlador import Bulk
 import socket
 import threading
 import sys
+import msvcrt
 import pickle
+
 
 class Client:
 
     def __init__(self):
-        self.jsonTxt = ""
+        self.josnTxt = ""
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         IP_address = "192.168.0.9"
@@ -21,31 +23,30 @@ class Client:
         self.sock.connect((IP_address, Port))
 
         msg_recv = threading.Thread(target=self.msg_recv)
-
         msg_recv.daemon = True
         msg_recv.start()
 
     def msg_recv(self):
-        while True:
-            try:
-                print("x")
-                data = self.sock.recv(1024)
-                data = data.decode('utf-8')
-                if data:
-                    messagebox.showinfo("Enviado:", str(data))
-                    if str(data) == "true":
-                        Bulk.saveJson(self.jsonTxt)
-                    elif str(data) == "false":
-                        print()
-                    else:
-                        self.jsonTxt = str(data)
-                        boolean = str(Bulk.validateJson(self.jsonTxt))
-                        self.sock.sendall(boolean.encode('utf-8'))
-                    print(str(data))
-            except:
-                pass
+            while True:
+                try:
+                    messagebox.showinfo("Nuevo mensaje:", "x")
+                    if self.sock is not None:
+                        data = self.sock.recv(2048)
+                        data = data.decode('utf-8')
+                        if data:
+                            messagebox.showinfo("Nuevo mensaje:", str(data))
+                            if str(data) == "true":
+                                Bulk.saveJson(str(self.jsonTxt))
+                            elif str(data) == "false":
+                                print()
+                            else:
+                                if data == "Welcome to [EDD]Blockchain Project!":
+                                    self.send_msg("false")
+                                else:
+                                    self.jsonTxt = str(data)
+                                    Bulk.validateJson(str(self.jsonTxt))
+                except:
+                    messagebox.showinfo("Nuevo mensaje:", str("Error"))
 
     def send_msg(self, msg):
         self.sock.sendall(msg.encode('utf-8'))
-
-

@@ -12,9 +12,6 @@ dll = DoublyLinkedList()
 
 c = Client()
 
-def initial():
-    c = Client()
-
 
 def encrypt_string(hash_string):
     print(hash_string)
@@ -92,26 +89,37 @@ def ReadBlockJson(jsonTxt):
 
 
 # if the user select a POST,INN OR PRE and select a block
-def Orders(jsonTxt):
+def Orders(jsonTxt, relative):
     jsonTxt = str(jsonTxt).replace("\'", '"').replace("None", "null")
     newAVL = TreeAvl()
     obj = find_values('value', str(jsonTxt))
     for i in obj:
         values = str(i).split("-")
         newAVL.insert(values[0], values[1])
-    newAVL.Post()
-    newAVL.listSimple.graphSimple("Post-Order")
-    newAVL.Pre()
-    newAVL.listSimple.graphSimple("Pre-Order")
-    newAVL.Inno()
-    newAVL.listSimple.graphSimple("Inn-Order")
+
+    if relative == 1:
+        newAVL.Post()
+        newAVL.listSimple.graphSimple("Post-Order")
+    if relative == 2:
+        newAVL.Pre()
+        newAVL.listSimple.graphSimple("Pre-Order")
+    if relative == 3:
+        newAVL.Inno()
+        newAVL.listSimple.graphSimple("Inn-Order")
 
 
 # if the message received is true save the json in a list
 def saveJson(jsonTxt: str):
+    boolean = 0
     obj = json.loads(str(jsonTxt))
     if len(jsonTxt) > 1:
-        dll.insert_at_end(jsonTxt, obj["HASH"])
+        n = dll.start_node
+        while n is not None:
+            if n.hash == obj["HASH"]:
+                boolean = 1
+            n = n.prev
+        if boolean == 0:
+            dll.insert_at_end(jsonTxt, obj["HASH"])
 
 
 # in the moment of received a jason return true if the hash is correct else send false
@@ -130,7 +138,8 @@ def validateJson(jsonTxt: str):
             previousHash))
     if HASH == hash:
         print("true")
+        c.sock.sendall(str("true").encode('utf-8'))
         return "true"
     else:
-        print("false")
+        c.sock.sendall(str("false").encode('utf-8'))
         return "false"

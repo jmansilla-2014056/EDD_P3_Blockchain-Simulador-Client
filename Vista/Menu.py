@@ -3,10 +3,10 @@ import os
 import sys
 
 from Controlador import Bulk
+from Controlador.client import Client
 
-Bulk.initial()
-
-menu = ['Send', 'Received', 'Reports', 'Exit']
+jsonTxt = ""
+menu = ['Send', 'Received', 'Reports', 'Run', 'Exit']
 
 
 def print_menu(stdscr, selected_row_idx):
@@ -36,6 +36,7 @@ def print_center(stdscr, text):
 def main(stdscr):
     # turn off cursor blinking
 
+    global jsonTxt
     curses.curs_set(0)
 
     # color scheme for selected row
@@ -64,17 +65,56 @@ def main(stdscr):
                     clear()
                     sys.stdout.flush()
                     g = input()
-                    test = Bulk.readCSV(g)
-                    Bulk.ReadBlockJson(test)
+                    Bulk.readCSV(g)
                 # Players
                 if current_row == 1:
-                    print('B')
+                    n = Bulk.dll.start_node
+
+                    print_center(stdscr, "<<" + n.hash + ">>")
+                    while 1:
+                        key = stdscr.getch()
+                        if key == curses.KEY_RIGHT:
+                            n = n.prev
+                            if n is not None:
+                                print_center(stdscr, "<<    " + n.hash + "   >>")
+                            else:
+                                n = n.pref
+                        elif key == curses.KEY_LEFT:
+                            n = n.pref
+                            if n is not None:
+                                print_center(stdscr, "<<    " + n.hash + "   >>")
+                            else:
+                                n = n.prev
+                        elif key == curses.KEY_ENTER or key in [10, 13]:
+                            jsonTxt = n.item
+                            break
                 if current_row == 2:
-                    print('C')
+                    try:
+                        while 1:
+                            print_center(stdscr, "F2: Tree, F3: Pre-Order,  F4: In-Order, F5: Post-Order ")
+                            key = stdscr.getch()
+                            if key == curses.KEY_F2:
+                                Bulk.ReadBlockJson(jsonTxt)
+                                break
+                            elif key == curses.KEY_F3:
+                                Bulk.Orders(jsonTxt, 1)
+                                break
+                            elif key == curses.KEY_F4:
+                                Bulk.Orders(jsonTxt, 2)
+                                break
+                            elif key == curses.KEY_F5:
+                                Bulk.Orders(jsonTxt, 3)
+                                break
+                    except:
+                        print_center(stdscr, 'Error whit this selection')
+                        key = stdscr.getch()
                 # if user selected last row, exit the program
+                if current_row == 3:
+                    Bulk.c.msg_recv()
                 if current_row == len(menu) - 1:
                     break
             print_menu(stdscr, current_row)
+
         except:
             print_center(stdscr, 'Error')
             continue
