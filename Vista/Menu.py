@@ -6,7 +6,7 @@ from Controlador import Bulk
 from Controlador.client import Client
 
 jsonTxt = ""
-menu = ['Send', 'Received', 'Reports', 'Run', 'Exit']
+menu = ['Send', 'Received', 'Reports', 'Exit']
 
 
 def print_menu(stdscr, selected_row_idx):
@@ -109,8 +109,6 @@ def main(stdscr):
                         print_center(stdscr, 'Error whit this selection')
                         key = stdscr.getch()
                 # if user selected last row, exit the program
-                if current_row == 3:
-                    Bulk.c.msg_recv()
                 if current_row == len(menu) - 1:
                     break
             print_menu(stdscr, current_row)

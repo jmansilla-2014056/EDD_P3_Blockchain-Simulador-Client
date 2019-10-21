@@ -156,7 +156,7 @@ class TreeAvl:
                 current = current.left
             elif stack:
                 current = stack.pop()
-                s.node(str(current.id), '{' + str(current.name) + ':' + str(current.id) + '}')
+                s.node(str(current.id), '{' + str(current.name) + ':' + str(current.id) + ' FE:'+ str(current.factory)+'}')
                 if current.left is not None:
                     s.edge(str(current.id), str(current.left.id))
                 if current.right is not None:

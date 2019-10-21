@@ -138,8 +138,6 @@ def validateJson(jsonTxt: str):
             previousHash))
     if HASH == hash:
         print("true")
-        c.sock.sendall(str("true").encode('utf-8'))
         return "true"
     else:
-        c.sock.sendall(str("false").encode('utf-8'))
         return "false"

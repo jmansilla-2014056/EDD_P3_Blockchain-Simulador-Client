@@ -34,19 +34,22 @@ class Client:
                         data = self.sock.recv(2048)
                         data = data.decode('utf-8')
                         if data:
-                            messagebox.showinfo("Nuevo mensaje:", str(data))
+                            messagebox.showinfo("Recivido:", str(data))
                             if str(data) == "true":
                                 Bulk.saveJson(str(self.jsonTxt))
                             elif str(data) == "false":
                                 print()
                             else:
                                 if data == "Welcome to [EDD]Blockchain Project!":
-                                    self.send_msg("false")
+                                    print()
                                 else:
                                     self.jsonTxt = str(data)
-                                    Bulk.validateJson(str(self.jsonTxt))
+                                    boolean = Bulk.validateJson(str(self.jsonTxt))
+                                    self.sock.sendall(boolean.encode('utf-8'))
+                                    self.sock.sendall(boolean.encode('utf-8'))
+                                    messagebox.showinfo("Enviar:", str(boolean))
                 except:
-                    messagebox.showinfo("Nuevo mensaje:", str("Error"))
+                    pass
 
     def send_msg(self, msg):
         self.sock.sendall(msg.encode('utf-8'))
