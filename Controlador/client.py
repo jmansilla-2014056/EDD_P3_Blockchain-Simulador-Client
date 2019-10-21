@@ -46,7 +46,6 @@ class Client:
                                     self.jsonTxt = str(data)
                                     boolean = Bulk.validateJson(str(self.jsonTxt))
                                     self.sock.sendall(boolean.encode('utf-8'))
-                                    self.sock.sendall(boolean.encode('utf-8'))
                                     messagebox.showinfo("Enviar:", str(boolean))
                 except:
                     pass
