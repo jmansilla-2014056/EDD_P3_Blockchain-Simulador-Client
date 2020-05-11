@@ -65,7 +65,7 @@ def generateString(listN: list):
     concat = concat + '"TIMESTAMP": "' + str(timeStamp) + '",\n'
     concat = concat + '"CLASS": "' + str(clase) + '",\n'
     concat = concat + '"DATA": ' + str(data) + ',\n'
-    concat = concat + '"PREVIUSHASH": "' + str(previousHash) + '",\n'
+    concat = concat + '"PREVIOUSHASH": "' + str(previousHash) + '",\n'
     HASH = encrypt_string(
         str(index) + str(timeStamp) + str(clase) + str(obj).replace("\'", '"').replace("None", "null").replace(" ",
                                                                                                                "") + str(

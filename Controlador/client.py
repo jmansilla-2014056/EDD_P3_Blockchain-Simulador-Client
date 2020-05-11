@@ -18,7 +18,7 @@ class Client:
         self.josnTxt = ""
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        IP_address = "192.168.0.9"
+        IP_address = "192.168.0.8"
         Port = 8080
         self.sock.connect((IP_address, Port))
 
@@ -46,9 +46,11 @@ class Client:
                                     self.jsonTxt = str(data)
                                     boolean = Bulk.validateJson(str(self.jsonTxt))
                                     self.sock.sendall(boolean.encode('utf-8'))
-                                    messagebox.showinfo("Enviar:", str(boolean))
+
+
                 except:
                     pass
 
     def send_msg(self, msg):
         self.sock.sendall(msg.encode('utf-8'))
+    
