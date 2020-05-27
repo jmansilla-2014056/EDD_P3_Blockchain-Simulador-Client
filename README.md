@@ -4,3 +4,5 @@ run Vista/Menu.py
 Observar que la IP puede variar
 <br>
 IDE: PyCharm
+<br>
+Servidor:https://github.com/jmansilla-2014056/EDD_P3_Blockchain-Simulador-Server
